@@ -9,7 +9,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
-import os
+import os,sys
 import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -24,6 +24,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = "k53ib32uyxfd0(7)7m+jo^mp0d=*9hqv-=ng9m$mggk7*%7ska"
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = True if 'runserver' in sys.argv else False
 DEBUG = True
 
 # Application definition
@@ -78,11 +79,22 @@ WSGI_APPLICATION = 'helloworld.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
+# DATABASES = {
+#     'staging': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'peaceful-hollows-48296',
+        'USER': 'william',
+        'PASSWORD': 'mk28to#$',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    },
 }
 
 AUTH_PASSWORD_VALIDATORS = [
