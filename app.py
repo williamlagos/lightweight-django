@@ -9,8 +9,8 @@ import tornado.ioloop
 import tornado.web
 import tornado.websocket
 import tornado.wsgi
+from kombi.wsgi import application as myapp_wsgi
 from tornado.options import define, parse_command_line, options
-from helloworld.wsgi import application as myapp_wsgi
 
 # logging.basicConfig(filename='tornado.log', level=logging.DEBUG)
 
@@ -19,16 +19,7 @@ define('port', default=8000, type=int, help='Server port')
 define('allowed_hosts', default='localhost:8000', multiple=True,
        help='Allowed hosts for cross domain connections')
 
-# Javascript Usage:
-# var ws = new WebSocket('ws://localhost:8000/ws');
-# ws.onopen = function(event){ console.log('socket open'); }
-# ws.onclose = function(event){ console.log('socket closed'); }
-# ws.onerror = function(error){ console.log('error:', err); }
-# ws.onmessage = function(event){ console.log('message:', event.data); }
-# # ... wait for connection to open
-# ws.send('hello world')
-
-class MyAppWebSocket(tornado.websocket.WebSocketHandler):
+class AuctionWebSocket(tornado.websocket.WebSocketHandler):
     """
     Simple Websocket echo handler. This could be extended to
     use Redis PubSub to broadcast updates to clients.
@@ -81,7 +72,7 @@ def start():
     """ Main application function """
     parse_command_line()
     application = tornado.web.Application([
-        (r'/ws', MyAppWebSocket),
+        (r'/ws', AuctionWebSocket),
         (r'/(.*)', tornado.web.FallbackHandler, dict(
             fallback=tornado.wsgi.WSGIContainer(myapp_wsgi)
         )),
