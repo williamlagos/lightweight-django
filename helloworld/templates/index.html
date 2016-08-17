@@ -1,0 +1,63 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{ appname }}</title>
+        <link href="{% static 'vendor/css/bootstrap.css' %}" rel="stylesheet">
+        <link href="{% static 'vendor/css/bootstrap-theme.css' %}" rel="stylesheet">
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar navbar-orange">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <img alt="" class="navbar-img" src="{% static 'svg/icon.svg' %}">
+                        <p>&nbsp;{{ appname }}</p>
+                    </a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Fretes</a></li>
+                        <li><a href="#">Perfis</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div id="kombi" class="container">
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <img src="{% static 'svg/std-kombi.svg' %}"/>
+                    <h1>{{ appname }}. Sua mudança num clique.</h1>
+                </div>
+            </div>
+        </div>
+        <script src="{% static 'vendor/js/jquery.js' %}"></script>
+        <script src="{% static 'vendor/js/underscore.js' %}"></script>
+        <script src="{% static 'vendor/js/bootstrap.js' %}"></script>
+        <script src="{% static 'vendor/js/backbone.js' %}"></script>
+        <script id="config" type="text/json">
+            {
+                "models": {},
+                "collections": {},
+                "views": {},
+                "router": null
+            }
+        </script>
+        <script src="{% static 'js/app.js' %}"></script>
+        <script src="{% static 'js/models.js' %}"></script>
+        <script src="{% static 'js/router.js' %}"></script>
+        <script src="{% static 'js/views.js' %}"></script>
+    </body>
+</html>

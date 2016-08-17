@@ -1,0 +1,25 @@
+@font-face { font-family: "Roboto Bold"; src: url("roboto-bold.ttf"); }
+@font-face { font-family: "Roboto"; src: url("roboto.ttf"); }
+
+html { overflow-x:hidden }
+/* #kombi { color:white; } */
+/* body { background:#ED891D; font-family: "Roboto"; } */
+body { font-family: "Roboto"; }
+.navbar a.navbar-brand { font-family: "Roboto Bold"; padding:10px}
+.navbar img.navbar-img { height:30px; }
+.navbar .navbar-brand p,img { display:inline !important; }
+.navbar li a { text-transform:uppercase; }
+
+.navbar-orange, .dropdown-menu-orange {
+    background:#FE9A2E;
+    border:1px solid #ED891D;
+}
+
+.navbar-orange a {
+    text-decoration:none;
+    color:#FFFFFF;
+}
+
+.navbar-orange button, span.icon-bar {
+    border:1px solid #FFFFFF;
+}
