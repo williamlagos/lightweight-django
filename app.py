@@ -1,17 +1,23 @@
 #!/usr/bin/env python
 """ Application handler for WebSockets and Django using Tornado Web Server """
 
-import os
-import sys
+import time
+import signal
 import logging
 import tornado.httpserver
 import tornado.ioloop
 import tornado.web
 import tornado.websocket
 import tornado.wsgi
+from tornado.options import define, parse_command_line, options
 from helloworld.wsgi import application as myapp_wsgi
 
-logging.basicConfig(filename='tornado.log', level=logging.DEBUG)
+# logging.basicConfig(filename='tornado.log', level=logging.DEBUG)
+
+define('debug', default=False, type=bool, help='Run in debug mode')
+define('port', default=8000, type=int, help='Server port')
+define('allowed_hosts', default='localhost:8000', multiple=True,
+       help='Allowed hosts for cross domain connections')
 
 # Javascript Usage:
 # var ws = new WebSocket('ws://localhost:8000/ws');
@@ -60,19 +66,31 @@ class MyAppWebSocket(tornado.websocket.WebSocketHandler):
         for client in cls.clients:
             client.write_message(message)
 
+def shutdown(server):
+    """ Exit function for server """
+    loop = tornado.ioloop.IOLoop.instance()
+    logging.info('Stopping server.')
+    server.stop()
+    def finalize():
+        """ Stops the main loop and logs for exit """
+        loop.stop()
+        logging.info('Stopped.')
+    loop.add_timeout(time.time() + 1.5, finalize)
+
 def start():
     """ Main application function """
+    parse_command_line()
     application = tornado.web.Application([
         (r'/ws', MyAppWebSocket),
         (r'/(.*)', tornado.web.FallbackHandler, dict(
             fallback=tornado.wsgi.WSGIContainer(myapp_wsgi)
         )),
-    ], debug=True)
-    application.listen(int(os.environ.get("PORT", 8000)))
+    ], debug=options.debug)
+    server = tornado.httpserver.HTTPServer(application)
+    server.listen(options.port)
+    signal.signal(signal.SIGINT, lambda sig, frame: shutdown(server))
+    logging.info('Starting server on localhost:%s', options.port)
     tornado.ioloop.IOLoop.instance().start()
 
 if __name__ == '__main__':
-    try:
-        start()
-    except KeyboardInterrupt:
-        sys.exit(0)
+    start()
