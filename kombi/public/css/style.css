@@ -10,7 +10,8 @@ body { font-family: "Roboto"; }
 .navbar img.navbar-img { height:30px; }
 .navbar .navbar-brand p,img { display:inline !important; }
 .navbar li a { text-transform:uppercase; }
-.navbar li a:hover { background:#ED891D; }
+.navbar li a:hover { background:#FFAB3F; }
+.nav .open > a:focus, .nav .open > a:hover { background:#ED891D; }
 
 .navbar-orange, .dropdown-menu-orange {
     background:#FE9A2E;
