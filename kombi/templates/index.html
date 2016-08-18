@@ -10,8 +10,13 @@
         <link href="{% static 'vendor/css/bootstrap.css' %}" rel="stylesheet">
         <link href="{% static 'vendor/css/bootstrap-theme.css' %}" rel="stylesheet">
         <link href="{% static 'css/style.css' %}" rel="stylesheet">
-        <script type="text/html" id="template">
-            <h1>Iniciando Aplicativo...</h1>
+        <script type="text/html" id="kombi">
+            <div class="row text-center">
+                <div class="col-md-10 col-md-offset-1">
+                    <img src="{% static 'svg/std-kombi.svg' %}"/>
+                    <h1>{{ appname }}. Sua mudança num clique.</h1>
+                </div>
+            </div>
         </script>
     </head>
     <body>
@@ -38,23 +43,18 @@
                                 Perfis
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Freteiro</a></li>
+                                <li id="provider"><a href="#">Freteiro</a></li>
                                 <li><a href="#">Clientes</a></li>
                             </ul>
                         </li>
-                        <li><a id="freight" href="#">Fretes</a></li>
+                        <li id="freight"><a href="#">Fretes</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <div id="kombi" class="container">
-            <div class="row text-center">
-                <div class="col-md-10 col-md-offset-1">
-                    <img src="{% static 'svg/std-kombi.svg' %}"/>
-                    <h1>{{ appname }}. Sua mudança num clique.</h1>
-                </div>
-            </div>
-        </div>
+
+        <div id="template" class="container"></div>
+
         <script src="{% static 'vendor/js/jquery.js' %}"></script>
         <script src="{% static 'vendor/js/underscore.js' %}"></script>
         <script src="{% static 'vendor/js/bootstrap.js' %}"></script>

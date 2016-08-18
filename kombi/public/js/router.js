@@ -1,10 +1,10 @@
 (function($, Backbone, _, app) {
     var AppRouter = Backbone.Router.extend({
         routes: {
-            '': 'home'
+            '': 'home',
         },
         initialize: function(options) {
-            this.contentElement = '#kombi';
+            this.contentElement = '#template';
             this.current = null;
             Backbone.history.start();
         },

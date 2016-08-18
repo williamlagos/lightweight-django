@@ -10,8 +10,9 @@
 var app = (function($) {
     var config = $('#config'),
         app = JSON.parse(config.text());
-    /* $(document).ready(function() {
+    $(document).ready(function() {
         var router = new app.router();
-    }); */
+        var navbar = new app.views.NavbarView();
+    });
     return app;
 })(jQuery);
