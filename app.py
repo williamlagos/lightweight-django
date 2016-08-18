@@ -4,13 +4,13 @@
 import time
 import signal
 import logging
-import tornado.httpserver
-import tornado.ioloop
-import tornado.web
-import tornado.websocket
-import tornado.wsgi
 from kombi.wsgi import application as myapp_wsgi
+from tornado.web import Application, FallbackHandler
+from tornado.wsgi import WSGIContainer
+from tornado.ioloop import IOLoop
 from tornado.options import define, parse_command_line, options
+from tornado.websocket import WebSocketHandler
+from tornado.httpserver import HTTPServer
 
 # logging.basicConfig(filename='tornado.log', level=logging.DEBUG)
 
@@ -19,7 +19,7 @@ define('port', default=8000, type=int, help='Server port')
 define('allowed_hosts', default='localhost:8000', multiple=True,
        help='Allowed hosts for cross domain connections')
 
-class AuctionWebSocket(tornado.websocket.WebSocketHandler):
+class AuctionWebSocket(WebSocketHandler):
     """
     Simple Websocket echo handler. This could be extended to
     use Redis PubSub to broadcast updates to clients.
@@ -38,18 +38,18 @@ class AuctionWebSocket(tornado.websocket.WebSocketHandler):
     def open(self):
         """ WebSocket Open method """
         logging.info('Client connected')
-        MyAppWebSocket.clients.add(self)
+        AuctionWebSocket.clients.add(self)
 
     def on_message(self, message):
         """ WebSocket On Message method """
         logging.debug('Received message %s', message)
-        MyAppWebSocket.broadcast(message)
+        AuctionWebSocket.broadcast(message)
 
     def on_close(self):
         """ WebSocket On Close method """
         logging.info('Client disconnected')
-        if self in MyAppWebSocket.clients:
-            MyAppWebSocket.clients.remove(self)
+        if self in AuctionWebSocket.clients:
+            AuctionWebSocket.clients.remove(self)
 
     @classmethod
     def broadcast(cls, message):
@@ -59,7 +59,7 @@ class AuctionWebSocket(tornado.websocket.WebSocketHandler):
 
 def shutdown(server):
     """ Exit function for server """
-    loop = tornado.ioloop.IOLoop.instance()
+    loop = IOLoop.instance()
     logging.info('Stopping server.')
     server.stop()
     def finalize():
@@ -71,17 +71,17 @@ def shutdown(server):
 def start():
     """ Main application function """
     parse_command_line()
-    application = tornado.web.Application([
+    application = Application([
         (r'/ws', AuctionWebSocket),
-        (r'/(.*)', tornado.web.FallbackHandler, dict(
-            fallback=tornado.wsgi.WSGIContainer(myapp_wsgi)
+        (r'/(.*)', FallbackHandler, dict(
+            fallback=WSGIContainer(myapp_wsgi)
         )),
     ], debug=options.debug)
-    server = tornado.httpserver.HTTPServer(application)
+    server = HTTPServer(application)
     server.listen(options.port)
     signal.signal(signal.SIGINT, lambda sig, frame: shutdown(server))
-    logging.info('Starting server on localhost:%s', options.port)
-    tornado.ioloop.IOLoop.instance().start()
+    logging.info('Starting server on port %s', options.port)
+    IOLoop.instance().start()
 
 if __name__ == '__main__':
     start()

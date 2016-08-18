@@ -5,10 +5,12 @@ html { overflow-x:hidden }
 /* #kombi { color:white; } */
 /* body { background:#ED891D; font-family: "Roboto"; } */
 body { font-family: "Roboto"; }
+
 .navbar a.navbar-brand { font-family: "Roboto Bold"; padding:10px}
 .navbar img.navbar-img { height:30px; }
 .navbar .navbar-brand p,img { display:inline !important; }
 .navbar li a { text-transform:uppercase; }
+.navbar li a:hover { background:#ED891D; }
 
 .navbar-orange, .dropdown-menu-orange {
     background:#FE9A2E;
