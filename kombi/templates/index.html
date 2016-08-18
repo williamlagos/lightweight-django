@@ -10,6 +10,9 @@
         <link href="{% static 'vendor/css/bootstrap.css' %}" rel="stylesheet">
         <link href="{% static 'vendor/css/bootstrap-theme.css' %}" rel="stylesheet">
         <link href="{% static 'css/style.css' %}" rel="stylesheet">
+        <script type="text/html" id="template">
+            <h1>Iniciando Aplicativo...</h1>
+        </script>
     </head>
     <body>
         <nav class="navbar navbar-orange navbar-static-top">
@@ -39,7 +42,7 @@
                                 <li><a href="#">Clientes</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">Fretes</a></li>
+                        <li><a id="freight" href="#">Fretes</a></li>
                     </ul>
                 </div>
             </div>
