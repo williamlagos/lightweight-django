@@ -55,7 +55,7 @@ class DeliveryResource(DjangoResource):
             freighter=int(self.data['freighter']),
             departure=self.data['departure'],
             arrival=self.data['arrival'],
-            deadline=datetime.strptime(self.data['departure'], '%d-%m-%Y %H:%M'),
+            deadline=datetime.strptime(self.data['deadline'], '%d-%m-%Y %H:%M'),
             volume=float(self.data['volume']),
             weight=float(self.data['weight']),
             description=self.data['description']
