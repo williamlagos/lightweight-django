@@ -30,10 +30,11 @@ class DeliveryTestCase(TestCase):
 
     def test_delivery(self):
         """ Creates a delivery on the fly and tests detail API function """
-        response = self.client.post('/kombi/deliveries', json.dumps(self.data), content_type='application/json')
-        print(response.status_code,response.content)
+        response = self.client.post('/kombi/deliveries', json.dumps(self.data),
+                                    content_type='application/json')
+        print response.status_code, response.content
         response = self.client.get('/kombi/deliveries/1/')
-        print(response.content)
+        print response.content
         self.assertEqual(200, response.status_code)
 
     def test_deliveries(self):
