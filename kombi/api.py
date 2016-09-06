@@ -68,12 +68,12 @@ class DeliveryResource(DjangoResource):
         except Delivery.DoesNotExist:
             delivery = Delivery()
         delivery.title = self.data['title'],
-        delivery.freighter = int(self.data['freighter']),
-        delivery.departure = self.data['departure'],
-        delivery.arrival = self.data['arrival'],
-        delivery.deadline = datetime.strptime(self.data['departure'], '%d-%m-%Y %H:%M'),
-        delivery.volume = float(self.data['volume']),
-        delivery.weight = float(self.data['weight']),
+        delivery.freighter = int(self.data['freighter'])
+        delivery.departure = self.data['departure']
+        delivery.arrival = self.data['arrival']
+        delivery.deadline = datetime.strptime(self.data['deadline'], '%d-%m-%Y %H:%M')
+        delivery.volume = float(self.data['volume'])
+        delivery.weight = float(self.data['weight'])
         delivery.description = self.data['description']
         delivery.save()
         return delivery

@@ -19,5 +19,5 @@ from api import DeliveryResource
 
 urlpatterns = [
     url(r'^$', IndexView.as_view(), name="index"),
-    url(r'kombi/deliveries', include(DeliveryResource.urls()))
+    url(r'kombi/deliveries/', include(DeliveryResource.urls()))
 ]
