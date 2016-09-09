@@ -1,6 +1,14 @@
 (function($, Backbone, _, app) {
-    var Deliveries = Backbone.Collection.extend({
-        url:'/books'
+    app.models.Delivery = Backbone.Model.extend({
+        get: function(attr){
+            return this.attributes.objects[0][attr];
+        }
+    });    /*app.collections.ready = $.getJSON(app.apiRoot);
+    app.collections.ready.done(function(data){*/
+    app.collections.Deliveries = Backbone.Collection.extend({
+        model: app.models.Delivery,
+        url: '/kombi/deliveries'
     });
-    app.collections = Deliveries;
+    app.deliveries = new app.collections.Deliveries();
+    // });
 })(jQuery, Backbone, _, app);

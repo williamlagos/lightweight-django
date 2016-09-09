@@ -18,6 +18,21 @@
                 </div>
             </div>
         </script>
+        <script type="text/html" id="deliveries-list">
+            <h2>My deliveries</h2>
+            <button class="add" type="submit">Add delivery</button>
+            <% if (deliveries !== null) { %>
+                <div class="deliveries">
+                    <%= value %>
+                    <%= deliveries[0] %>
+                    <% _.each(deliveries, function(delivery){ %>
+                        <a><%- delivery.get('id') %></a>
+                    <% }); %>
+                </div>
+            <% } else { %>
+                <h3 class="loading">Loading...</h3>
+            <% } %>
+        </script>
     </head>
     <body>
         <nav class="navbar navbar-orange navbar-static-top">
