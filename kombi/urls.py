@@ -14,8 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from views import IndexView
-from api import DeliveryResource
+from kombi.views import IndexView
+from kombi.api import DeliveryResource
 
 urlpatterns = [
     url(r'^$', IndexView.as_view(), name="index"),
