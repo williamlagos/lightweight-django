@@ -14,11 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
+from django.views.generic import TemplateView
 from views import IndexView
 from api import DeliveryResource
 
 urlpatterns = [
     url(r'^$', IndexView.as_view(), name="index"),
+    url(r'^login/$', TemplateView.as_view(template_name="login.html"), name='login'),
     url(r'kombi/deliveries$', DeliveryResource.as_list(), name="kombi_deliveries"),
     url(r'kombi/deliveries/(?P<pk>\d+)$', DeliveryResource.as_detail(), name="kombi_delivery"),
 ]
