@@ -18,15 +18,11 @@
         initialize: function(options) {
             var self = this;
             TemplateView.prototype.initialize.apply(this,arguments);
-            app.collections.ready.done(function(){
-                app.deliveries.fetch();
-            });
+            app.deliveries.fetch();
+            app.deliveries.on('change reset',this.render,app.deliveries);
         },
         getContext: function() {
-            return {
-                deliveries: app.deliveries || null,
-                value: "ABC"
-            };
+            return { deliveries: app.deliveries || null };
         },
     });
     var NavbarView = Backbone.View.extend({

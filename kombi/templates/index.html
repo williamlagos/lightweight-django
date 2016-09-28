@@ -23,8 +23,6 @@
             <button class="add" type="submit">Add delivery</button>
             <% if (deliveries !== null) { %>
                 <div class="deliveries">
-                    <%= value %>
-                    <%= deliveries[0] %>
                     <% _.each(deliveries, function(delivery){ %>
                         <a><%- delivery.get('id') %></a>
                     <% }); %>
@@ -70,10 +68,6 @@
 
         <div id="template" class="container"></div>
 
-        <script src="{% static 'vendor/js/jquery.js' %}"></script>
-        <script src="{% static 'vendor/js/underscore.js' %}"></script>
-        <script src="{% static 'vendor/js/bootstrap.js' %}"></script>
-        <script src="{% static 'vendor/js/backbone.js' %}"></script>
         <script id="config" type="text/json">
             {
                 "models": {},
@@ -83,6 +77,10 @@
                 "apiRoot": "/kombi/deliveries"
             }
         </script>
+        <script src="{% static 'vendor/js/jquery.js' %}"></script>
+        <script src="{% static 'vendor/js/underscore.js' %}"></script>
+        <script src="{% static 'vendor/js/bootstrap.js' %}"></script>
+        <script src="{% static 'vendor/js/backbone.js' %}"></script>
         <script src="{% static 'js/app.js' %}"></script>
         <script src="{% static 'js/models.js' %}"></script>
         <script src="{% static 'js/router.js' %}"></script>
