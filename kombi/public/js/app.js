@@ -1,6 +1,6 @@
 /* Javascript Usage: */
 
-var ws = new WebSocket('ws://flyingdutchman.local:8000/ws');
+var ws = new WebSocket('ws://'+window.location.host+'/ws');
 var app = (function($) {
     var config = $('#config');
     var app = JSON.parse(config.text());
