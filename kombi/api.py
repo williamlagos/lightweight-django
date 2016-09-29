@@ -18,7 +18,6 @@ class DeliveryResource(DjangoResource):
         'weight': 'weight',
         'description': 'description'
     })
-
     def is_authenticated(self):
         """ Verifies authorization of modification of API objects """
         # Open everything wide!
@@ -37,6 +36,17 @@ class DeliveryResource(DjangoResource):
         #     return True
         # except ApiKey.DoesNotExist:
         #     return False
+
+    def serialize_list(self,data):
+        if data is None:
+            return ''
+        # Check for a ``Data``-like object. We should assume ``True`` (all
+        # data gets prepared) unless it's explicitly marked as not.
+        if not getattr(data, 'should_prepare', True):
+            formatted = data.value
+        else:
+            formatted = [self.prepare(item) for item in data]
+        return self.serializer.serialize(formatted)
 
     # GET /kombi/deliveries/
     def list(self):

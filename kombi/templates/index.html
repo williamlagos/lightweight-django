@@ -19,16 +19,16 @@
             </div>
         </script>
         <script type="text/html" id="deliveries-list">
-            <h2>My deliveries</h2>
-            <button class="add" type="submit">Add delivery</button>
+            <h2>Meus fretes</h2>
+            <button class="add btn btn-default btn-block" type="submit">Adicionar frete</button>
             <% if (deliveries !== null) { %>
-                <div class="deliveries">
-                    <% _.each(deliveries, function(delivery){ %>
-                        <a><%- delivery.get('id') %></a>
+                <div class="deliveries" style="padding:5px 0px">
+                    <% deliveries.each(function(delivery){ %>
+                        <p><%= delivery.get('arrival') %></p>
                     <% }); %>
                 </div>
             <% } else { %>
-                <h3 class="loading">Loading...</h3>
+                <h3 class="loading">Carregando...</h3>
             <% } %>
         </script>
     </head>

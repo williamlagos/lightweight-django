@@ -16,13 +16,26 @@
     var IndexView = TemplateView.extend({
         templateName: "#deliveries-list",
         initialize: function(options) {
-            var self = this;
+            _.bindAll(this,'getContext','render');
             TemplateView.prototype.initialize.apply(this,arguments);
+            app.deliveries.on('sync',this.render,this);
+            app.deliveries.on('reset',this.render,this);
+            app.deliveries.on('change',this.render,this);
             app.deliveries.fetch();
-            app.deliveries.on('change reset',this.render,app.deliveries);
         },
         getContext: function() {
             return { deliveries: app.deliveries || null };
+        },
+        render: function() {
+            _.each(app.deliveries.models,function(delivery){
+                for(var prop in delivery.toJSON().objects){
+                    console.log(prop);
+                    console.log(delivery[0].arrival);
+                }
+            });
+            var context = this.getContext(),
+                html = this.template(context);
+            this.$el.html(html);
         },
     });
     var NavbarView = Backbone.View.extend({

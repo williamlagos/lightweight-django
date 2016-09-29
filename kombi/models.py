@@ -13,7 +13,7 @@ class Delivery(models.Model):
     image = models.ImageField(max_length=128)
     title = models.CharField(max_length=128)
     description = models.TextField(default='', blank=True)
-    def __unicode__(self):
-        pass
+    # def __unicode__(self):
+    #     pass
     def __str__(self):
         return self.title
