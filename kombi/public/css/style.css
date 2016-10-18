@@ -6,6 +6,7 @@ html { overflow-x:hidden }
 /* body { background:#ED891D; font-family: "Roboto"; } */
 body { font-family: "Roboto"; }
 
+.navbar { margin-bottom:0; }
 .navbar a.navbar-brand { font-family: "Roboto Bold"; padding:10px}
 .navbar img.navbar-img { height:30px; }
 .navbar .navbar-brand p,img { display:inline !important; }

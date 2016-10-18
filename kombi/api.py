@@ -37,7 +37,7 @@ class DeliveryResource(DjangoResource):
         # except ApiKey.DoesNotExist:
         #     return False
 
-    def serialize_list(self,data):
+    def serialize_list(self, data):
         if data is None:
             return ''
         # Check for a ``Data``-like object. We should assume ``True`` (all
