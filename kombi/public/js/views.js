@@ -1,56 +1,48 @@
 (function($, Backbone, _, app) {
     var TemplateView = Backbone.View.extend({
         templateName: '',
+        el: '#content-wrapper',
         initialize: function() {
             this.template = _.template($(this.templateName).html());
         },
         render: function() {
-            var context = this.getContext(),
-                html = this.template(context);
+            var context = this.getContext();
+            var html = this.template(context);
             this.$el.html(html);
         },
         getContext: function() {
             return {};
         }
     });
+    var FreightView = TemplateView.extend({ templateName: "#freight" });
+    var SelectView = TemplateView.extend({ templateName: "#select" });
+    var KombiView = TemplateView.extend({ templateName: "#kombi" });
+    var HelpView = TemplateView.extend({ templateName: "#help" });
     var IndexView = TemplateView.extend({
-        templateName: "#deliveries-list",
+        model: app.deliveries,
+        templateName: "#deliveries",
         initialize: function(options) {
-            _.bindAll(this,'getContext','render');
             TemplateView.prototype.initialize.apply(this,arguments);
-            app.deliveries.on('sync',this.render,this);
-            app.deliveries.on('reset',this.render,this);
-            app.deliveries.on('change',this.render,this);
-            app.deliveries.fetch();
+            this.listenTo(this.model,"sync",this.render);
+            this.model.fetch();
         },
         getContext: function() {
             return { deliveries: app.deliveries || null };
         },
-        render: function() {
-            _.each(app.deliveries.models,function(delivery){
-                for(var prop in delivery.toJSON().objects){
-                    console.log(prop);
-                    console.log(delivery[0].arrival);
-                }
-            });
-            var context = this.getContext(),
-                html = this.template(context);
-            this.$el.html(html);
-        },
     });
     var NavbarView = Backbone.View.extend({
-        el: $('.navbar'),
+        el: $('.menu-toggle'),
         events: {
-            'click #freight':'alert',
-            'click #provider':'console'
+            'click':'toggle',
         },
-        alert: function() {
-            alert('Hi!');
+        toggle: function() {
+            $('#wrapper').toggleClass('toggled');
         },
-        console: function() {
-            alert('Ha!');
-        }
     });
+    app.views.FreightView = FreightView;
     app.views.NavbarView = NavbarView;
+    app.views.SelectView = SelectView;
+    app.views.KombiView = KombiView;
     app.views.IndexView = IndexView;
+    app.views.HelpView = HelpView;
 })(jQuery, Backbone, _, app);

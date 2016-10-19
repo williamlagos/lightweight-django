@@ -8,65 +8,28 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{{ appname }}</title>
         <link href="{% static 'vendor/css/bootstrap.css' %}" rel="stylesheet">
-        <!--<link href="{% static 'vendor/css/bootstrap-theme.css' %}" rel="stylesheet">!-->
         <link href="{% static 'css/sidebar.css' %}" rel="stylesheet">
         <link href="{% static 'css/style.css' %}" rel="stylesheet">
-        <script type="text/html" id="kombi">
-            <div class="row text-center">
-                <div class="col-md-10 col-md-offset-1">
-                    <img src="{% static 'svg/std-kombi.svg' %}"/>
-                    <h1>{{ appname }}. Sua mudança num clique.</h1>
-                </div>
-            </div>
-        </script>
-        <script type="text/html" id="deliveries-list">
-            <h2>Meus fretes</h2>
-            <button class="add btn btn-default btn-lg" type="submit">Adicionar frete</button>
-            <% if (deliveries !== null) { %>
-                <div class="deliveries" style="padding:5px 0px">
-                    <% deliveries.each(function(delivery){ %>
-                        <p><%= delivery.get('arrival') %></p>
-                    <% }); %>
-                </div>
-            <% } else { %>
-                <h3 class="loading">Carregando...</h3>
-            <% } %>
-        </script>
+        <script type="text/html" id="help"> {% include "help.html" %} </script>
+        <script type="text/html" id="kombi"> {% include "kombi.html" %} </script>
+        <script type="text/html" id="select"> {% include "select.html" %} </script>
+        <script type="text/html" id="freight"> {% include "add.html" %} </script>
+        <script type="text/html" id="deliveries"> {% include "deliveries.html" %} </script>
     </head>
     <body>
         <nav class="navbar navbar-orange navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                            data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">
-                        <img alt="" class="navbar-img" src="{% static 'svg/icon.svg' %}">
-                        <p>&nbsp;{{ appname }}</p>
-                    </a>
-                    <a href="#menu-toggle" style="color:black;" class="btn btn-default navbar-btn" id="menu-toggle">
-                        LATERAL
-                    </a>
-                </div>
-                <div id="navbar" class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                               role="button" aria-haspopup="true" aria-expanded="false">
-                                Perfis
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li id="provider"><a href="#">Freteiro</a></li>
-                                <li><a href="#">Clientes</a></li>
-                            </ul>
-                        </li>
-                        <li id="freight"><a href="#">Fretes</a></li>
-                    </ul>
-                </div>
+            <div class="container-fluid">
+                <button href="#menu-toggle" type="button" class="navbar-right navbar-toggle collapsed menu-toggle" data-toggle="collapse"
+                        data-target="#navbar" aria-expanded="false" aria-controls="navbar" style="display:block; margin-right: 0px;">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <img alt="" class="navbar-img" src="{% static 'svg/icon.svg' %}">
+                    <p>&nbsp;{{ appname }}</p>
+                </a>
             </div>
         </nav>
 
@@ -74,35 +37,16 @@
             <div id="sidebar-wrapper">
                 <ul class="sidebar-nav">
                     <li class="sidebar-brand">
-                        <a href="#"> Frete Fácil </a>
+                        <a href="#"> Usuário </a>
                     </li>
-                    <li><a href="#"> Dashboard   </a></li>
-                    <li><a href="#"> Shortcuts   </a></li>
-                    <li><a href="#"> Overview    </a></li>
-                    <li><a href="#"> Events      </a></li>
-                    <li><a href="#"> About       </a></li>
-                    <li><a href="#"> Services    </a></li>
-                    <li><a href="#"> Contact     </a></li>
+                    <li><a href="#add"> Adicionar Frete   </a></li>
+                    <li><a href="#list"> Selecionar Fretes   </a></li>
+                    <li><a href="#select"> Disputar Fretes   </a></li>
+                    <li><a href="#help"> Ajuda do Aplicativo    </a></li>
+                    <li><a href="#"> Sair do Frete Fácil     </a></li>
                 </ul>
             </div>
-            <div id="content-wrapper">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h1> Simple Sidebar </h1>
-                            <p> This template has a responsive menu toggling system.
-                                The menu will appear collapsed on smaller screens,
-                                and will appear non-collapsed on larger screens.
-                                When toggled using the button below, the menu will
-                                appear/disappear. On small screens, the page content
-                                will be pushed off canvas. </p>
-                            <p> Make sure to keep all page content within the
-                                <code>#page-content-wrapper</code>. </p>
-                        </div>
-                    </div>
-                </div>
-                <div id="template" class="container"></div>
-            </div>
+            <div id="content-wrapper"></div>
         </div>
 
         <script id="config" type="text/json">
@@ -122,11 +66,5 @@
         <script src="{% static 'js/models.js' %}"></script>
         <script src="{% static 'js/router.js' %}"></script>
         <script src="{% static 'js/views.js' %}"></script>
-        <script>
-        $('#menu-toggle').click(function(e) {
-            e.preventDefault();
-            $('#wrapper').toggleClass('toggled');
-        });
-        </script>
     </body>
 </html>
