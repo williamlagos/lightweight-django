@@ -1,0 +1,16 @@
+<style>
+h2 {
+    margin:0;
+}
+</style>
+
+<h2>Meus fretes atuais</h2>
+<% if (deliveries !== null) { %>
+    <div class="deliveries" style="padding:5px 0px">
+        <% deliveries.each(function(delivery){ %>
+            <p><%= delivery.get('arrival') %></p>
+        <% }); %>
+    </div>
+<% } else { %>
+    <h3 class="loading">Carregando...</h3>
+<% } %>
