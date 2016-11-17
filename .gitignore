@@ -2,4 +2,5 @@ venv
 *.pyc
 *.log
 *.db
+.DS_Store
 static

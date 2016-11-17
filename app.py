@@ -54,6 +54,7 @@ class AuctionWebSocket(WebSocketHandler):
     @classmethod
     def broadcast(cls, message):
         """ WebSocket Broadcast method """
+        #print(cls.clients)
         for client in cls.clients:
             client.write_message(message)
 
