@@ -15,8 +15,8 @@ body { font-family: "Roboto"; }
 .nav .open > a:focus, .nav .open > a:hover { background:#ED891D; }
 
 .navbar-orange, .dropdown-menu-orange {
-    background:#FE9A2E;
-    border:1px solid #ED891D;
+    background:#DC780C;
+    border:0px;
 }
 
 .navbar-orange a {
