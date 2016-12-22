@@ -15,8 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.views.generic import TemplateView, RedirectView
-from views import IndexView
-from api import DeliveryResource
+from kombi.views import IndexView
+from kombi.api import DeliveryResource
 
 urlpatterns = [
     url(r'^$', IndexView.as_view(), name="index"),
