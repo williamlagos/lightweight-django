@@ -24,8 +24,8 @@ body {
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
-    background: #333;
-    color: white;
+    background: #FE9A2E;
+    color: white !important;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -39,7 +39,7 @@ body {
 #content-wrapper {
     width: 100%;
     position: absolute;
-    padding: 10px;
+    /*padding: 10px;*/
 }
 
 #wrapper.toggled #content-wrapper {
@@ -66,12 +66,13 @@ body {
 .sidebar-nav li a {
     display: block;
     text-decoration: none;
-    color: #999999;
+    font-family: "Roboto Bold";
+    color: white;
 }
 
 .sidebar-nav li a:hover {
     text-decoration: none;
-    color: #fff;
+    color: white;
     background: rgba(255,255,255,0.2);
 }
 
@@ -87,7 +88,8 @@ body {
 }
 
 .sidebar-nav > .sidebar-brand a {
-    color: #999999;
+    font-family: "Roboto Bold";
+    color: white;
 }
 
 .sidebar-nav > .sidebar-brand a:hover {
@@ -113,7 +115,7 @@ body {
     }
 
     #content-wrapper {
-        padding: 20px;
+        /*padding: 20px;*/
         position: relative;
     }
 
