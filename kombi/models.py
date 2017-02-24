@@ -17,3 +17,9 @@ class Delivery(models.Model):
     #     pass
     def __str__(self):
         return self.title
+
+class Freighter(models.Model):
+    """ Main freighter model """
+    name = models.CharField(max_length=256)
+    code = models.CharField(max_length=128)
+    phone = models.CharField(max_length=64)
