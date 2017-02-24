@@ -1,7 +1,7 @@
 @font-face { font-family: "Roboto Bold"; src: url("roboto-bold.ttf"); }
 @font-face { font-family: "Roboto"; src: url("roboto.ttf"); }
 
-html { overflow-x:hidden }
+html { overflow-x:hidden; overflow-y:hidden }
 /* #kombi { color:white; } */
 /* body { background:#ED891D; font-family: "Roboto"; } */
 body { font-family: "Roboto"; }
@@ -11,11 +11,11 @@ body { font-family: "Roboto"; }
 .navbar img.navbar-img { height:30px; }
 .navbar .navbar-brand p,img { display:inline !important; }
 .navbar li a { text-transform:uppercase; }
-.navbar li a:hover { background:#FFAB3F; }
-.nav .open > a:focus, .nav .open > a:hover { background:#ED891D; }
+.navbar li a:hover { background:#1ABC9C; }
+.nav .open > a:focus, .nav .open > a:hover { background:#16A085; }
 
 .navbar-orange, .dropdown-menu-orange {
-    background:#DC780C;
+    background:#1ABC9C;
     border:0px;
 }
 
