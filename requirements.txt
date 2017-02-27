@@ -1,6 +1,7 @@
 dj-database-url==0.4.1
 Django==1.8.14
 Pillow==3.3.1
+django-crispy-forms==1.6.1
 restless==2.0.1
 psycopg2==2.6.2
 whitenoise==3.2
