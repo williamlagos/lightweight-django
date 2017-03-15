@@ -1,5 +1,5 @@
 dj-database-url==0.4.1
-djangorestframework==3.5.4
+restless==2.0.3
 django-crispy-forms==1.6.1
 Django==1.8.14
 Pillow==3.3.1
